@@ -1,11 +1,4 @@
 <?php
-/**
- * 
- * Core configuration class for AlaneeMVC
- * Donot edit this file
- * @author shijo.thomas
- *
- */
 class Config {
 	private static $conf;
 	
@@ -15,8 +8,9 @@ class Config {
 	}
 /**
  * 
- * Reading a configuration item ...
- * @param String $confKey
+ * Enter description here ...
+ * @param unknown_type $confKey
+ * @todo : needs to be refactored ... to allow multilevel configuration.
  */	
 	public static function read($confKey) {
 		$conf_val = self::$conf;
@@ -26,12 +20,7 @@ class Config {
 		}
 		return $conf_val;
 	}
-/**
- * 
- * writing a configuration item ...
- * @param String $confKey
- * @param String $value
- */		
+	
 	public static function write($confKey,$value) {
 		$conf_val = &self::$conf;
 		$conf_key_arr = explode('.', trim($confKey));
@@ -45,14 +34,10 @@ Config::doConfig();
 require(SERVER_ROOT.'/alanee_lib/controller/alanee_core.php');
 require(SERVER_ROOT.'/controller/alanee_controller.php');
 require(SERVER_ROOT.'/alanee_lib/config/database.php');
-require(SERVER_ROOT.'/alanee_lib/modal/alanee_modal.php');
+require(SERVER_ROOT.'/alanee_lib/model/alanee_model.php');
 require(SERVER_ROOT.'/alanee_lib/view/alanee_view.php');
-
 /**
- * 
- * Autoloader class.
- * @author shijo.thomas
- *
+ * Class auto loader
  */
     class Autoloader {
     	private $classFolder = '';
@@ -61,10 +46,11 @@ require(SERVER_ROOT.'/alanee_lib/view/alanee_view.php');
             spl_autoload_register(array($this, 'loader'));
         }
         private function loader($className) {
-            require SERVER_ROOT.'/'.$this->classFolder.'/'.strtolower($className).'_modal.php';
+        	$classFile = SERVER_ROOT.'/'.$this->classFolder.'/'.strtolower($className).'_model.php';
+           	include_once $classFile;
         }
         public function loadThisClass($classFile) {
-        	require SERVER_ROOT.'/'.$classFile;
+        	include_once SERVER_ROOT.'/'.$classFile;
         }
     }
 

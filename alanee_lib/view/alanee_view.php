@@ -58,7 +58,6 @@ class AlaneeView {
  * @todo add all ajax types
  */	
 	public function renderAjax($type,$resultSet,$controllername,$action,$params) {
-		
 		switch ($type) {
 			case 'json':
 				$this->setTemplateFile('ajax');

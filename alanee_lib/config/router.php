@@ -1,12 +1,5 @@
 <?php
 require(SERVER_ROOT.'/config/routes.ini');
-/**
- * 
- * Core class to handle all routing.
- * Donot edit.
- * @author shijo.thomas
- *
- */
 class Router {
 	public static $controllerFile;
 	public static $controllerClass;
@@ -17,13 +10,7 @@ class Router {
 	public static $viewPath;
 	public static $view;
 	public static $prefix;
-	/**
-	 * 
-	 * Do routing
-	 * @param String $in_request
-	 * @param Array $routes
-	 * @param String $prefixes
-	 */
+	
 	public static function doRoute($in_request,$routes,$prefixes) {
 		parse_str($in_request,$request);
 		//list($param , $url) = split('=' , $request);
@@ -70,7 +57,11 @@ class Router {
 	}
 	
 }
-
+/*
+echo '<pre>';
+print_r($_SERVER);
+exit;
+*/
 $request = $_SERVER['QUERY_STRING'];
 if(empty($request)) {
 	$request = 'url=home/index';

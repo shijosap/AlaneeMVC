@@ -1,11 +1,4 @@
 <?php
-/**
- * 
- * Database core class ...
- * Donot edit
- * @author shijo.thomas
- *
- */
 class AlaneeDb {
 	private $host;
 	private $database;
@@ -21,18 +14,11 @@ class AlaneeDb {
 		$this->user = $config['user'];
 		$this->password = $config['password'];
 	}
-	/**
-	 * 
-	 * To create a connection. This function returns database connection object
-	 */
 	public function getConnection() {
 		$this->dbCon = new mysqli($this->host,$this->user,$this->password,$this->database);
 		return $this->dbCon;
 	}
-	/**
-	 * 
-	 * Closes a existing database connection
-	 */
+	
 	public function closeConnection() {
 		$this->dbCon->close();		
 	}
